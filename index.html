@@ -5,76 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Plenix Clash Server</title>
 
-  <!-- Import font Orbitron untuk judul -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-  <!-- Import font Poppins untuk tombol -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: black;
       color: white;
       text-align: center;
-      overflow: hidden;
       position: relative;
       min-height: 100vh;
+      overflow-x: hidden; /* biar ga geser kesamping */
     }
 
-    /* Halaman utama */
-    #main-content {
-      display: block;
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
     }
 
-    /* Pesan untuk desktop */
-    #desktop-message {
-      display: none;
-      height: 100vh;
+    section {
+      padding: 60px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: black;
-      color: white;
-      font-size: 1.2rem;
-      font-family: 'Poppins', sans-serif;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      margin-top: 80px;
+    .hero h1 {
+      font-size: 2.4rem;
       background: linear-gradient(90deg, #ff4ecd, #ff6b6b, #ffa94d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      z-index: 2;
-      position: relative;
+      margin-bottom: 20px;
     }
 
-    p {
+    .hero p {
       font-size: 1rem;
       color: #ddd;
-      margin: 10px auto 30px;
-      width: 85%;
-      font-family: Arial, sans-serif;
-      z-index: 2;
-      position: relative;
+      max-width: 90%;
+      margin: 0 auto 30px;
     }
 
-    /* Container tombol vertikal */
     .button-group {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 15px;
-      margin-bottom: 30px;
-      z-index: 2;
-      position: relative;
     }
 
     .btn {
       display: block;
       width: 250px;
       max-width: 90%;
+      margin: 0 auto;
       text-align: center;
       background: #28a745;
       color: white;
@@ -82,29 +72,74 @@
       border-radius: 50px;
       text-decoration: none;
       font-size: 1rem;
-      font-family: 'Poppins', sans-serif;
       font-weight: 600;
       transition: all 0.2s ease;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
 
-    .btn:hover {
-      background: #6c757d;
+    .btn:hover { background: #6c757d; }
+    .btn:active { background: #5a6268; }
+
+    /* Tentang */
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      color: #ccc;
+      line-height: 1.6;
     }
 
-    .btn:active {
-      background: #5a6268;
+    /* Fitur */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Testimoni */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .testimonial {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      color: #eee;
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 20px;
+      background: rgba(255,255,255,0.05);
+      margin-top: 40px;
     }
 
     .social {
-      margin-top: 20px;
-      z-index: 2;
-      position: relative;
+      margin-top: 15px;
     }
 
     .social a {
       display: inline-block;
-      margin: 0 10px;
+      margin: 0 8px;
       transition: transform 0.3s ease, filter 0.3s ease;
     }
 
@@ -114,13 +149,14 @@
     }
 
     .social img {
-      width: 28px; /* perkecil ikon */
+      width: 28px;
       height: 28px;
     }
 
     /* Bubble background */
     .bubble {
-      position: absolute;
+      position: fixed;
+      bottom: -100px;
       border-radius: 50%;
       opacity: 0.5;
       animation: floatUp linear infinite;
@@ -128,57 +164,69 @@
     }
 
     @keyframes floatUp {
-      from { transform: translateY(110vh); }
-      to { transform: translateY(-20vh); }
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-120vh); }
     }
 
     /* Responsive */
-    @media (max-width: 480px) {
-      #main-content { display: block; }
-      #desktop-message { display: none; }
-    }
-
     @media (min-width: 481px) {
-      #main-content { display: none; }
-      #desktop-message { display: flex; }
+      body { text-align: center; }
     }
   </style>
 </head>
 <body>
-  <!-- Konten utama hanya tampil di HP -->
-  <div id="main-content">
+  <!-- Hero -->
+  <section class="hero">
     <h1>Plenix Clash Server</h1>
-    <p>Server COC private terbaik untuk pengalaman bermain yang luar biasa</p>
-
-    <!-- 🔗 Ganti "#" dengan link asli download & subscribe -->
+    <p>Server COC private terbaik untuk pengalaman bermain yang lebih seru dan menantang.</p>
     <div class="button-group">
-      <a href="#" class="btn">Download Sekarang</a> <!-- Link download disini -->
-      <a href="#" class="btn">Subscribe</a> <!-- Link subscribe disini -->
+      <a href="#" class="btn">Download Sekarang</a>
+      <a href="#" class="btn">Subscribe</a>
     </div>
+  </section>
 
+  <!-- Tentang -->
+  <section class="about">
+    <h2>Tentang Server</h2>
+    <p>
+      Plenix Clash Server hadir untuk memberikan pengalaman baru bagi para pemain Clash of Clans.
+      Dengan berbagai fitur modifikasi, Anda dapat menikmati permainan dengan cara yang lebih bebas dan menyenangkan.
+    </p>
+  </section>
+
+  <!-- Fitur -->
+  <section>
+    <h2>Fitur Utama</h2>
+    <div class="features">
+      <div class="feature-card">💎 Unlimited Gems</div>
+      <div class="feature-card">⚔️ Troops Custom</div>
+      <div class="feature-card">🏰 Base Builder Cepat</div>
+      <div class="feature-card">🔥 Event Eksklusif</div>
+    </div>
+  </section>
+
+  <!-- Testimoni -->
+  <section>
+    <h2>Testimoni Pemain</h2>
+    <div class="testimonials">
+      <div class="testimonial">“Server ini bikin main COC jadi jauh lebih seru. Gak bosan lagi!”</div>
+      <div class="testimonial">“Fitur unlimited gems bener-bener ngebantu banget. GG!”</div>
+      <div class="testimonial">“Suka banget sama event custom-nya. Kreatif dan unik.”</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Plenix Clash Server. Semua Hak Dilindungi.</p>
     <div class="social">
-      <!-- 🔗 Ganti "#" dengan link sosial media asli -->
-      <a href="#"> <!-- Facebook -->
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"/>
-      </a>
-
-      <a href="#"> <!-- Telegram -->
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"/>
-      </a>
-
-      <a href="#"> <!-- Email -->
-        <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email"/>
-      </a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email"/></a>
     </div>
-  </div>
+  </footer>
 
-  <!-- Pesan untuk desktop -->
-  <div id="desktop-message">
-    Silakan buka website ini melalui perangkat <strong>HP (Mobile)</strong>.
-  </div>
-
+  <!-- Bubble Background -->
   <script>
-    // Buat background bubble acak
     function createBubble() {
       const bubble = document.createElement("div");
       const size = Math.random() * 60 + 20;
@@ -190,11 +238,8 @@
       bubble.style.animationDuration = `${Math.random() * 10 + 6}s`;
       document.body.appendChild(bubble);
 
-      setTimeout(() => {
-        bubble.remove();
-      }, 20000);
+      setTimeout(() => { bubble.remove(); }, 20000);
     }
-
     setInterval(createBubble, 400);
   </script>
 </body>
