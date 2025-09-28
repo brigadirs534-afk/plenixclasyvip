@@ -17,7 +17,7 @@
       text-align: center;
       position: relative;
       min-height: 100vh;
-      overflow-x: hidden; /* biar ga geser kesamping */
+      overflow-x: hidden;
     }
 
     h1, h2, h3 {
@@ -25,9 +25,36 @@
     }
 
     section {
-      padding: 60px 20px;
+      padding: 80px 20px;
       position: relative;
       z-index: 2;
+    }
+
+    /* 🔹 Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px); /* efek blur */
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #ff6b6b;
     }
 
     /* Hero Section */
@@ -105,9 +132,7 @@
       transition: transform 0.3s ease;
     }
 
-    .feature-card:hover {
-      transform: translateY(-5px);
-    }
+    .feature-card:hover { transform: translateY(-5px); }
 
     /* Testimoni */
     .testimonials {
@@ -158,7 +183,7 @@
       position: fixed;
       bottom: -100px;
       border-radius: 50%;
-      opacity: 0.5;
+      opacity: 0.4;
       animation: floatUp linear infinite;
       z-index: 0;
     }
@@ -167,16 +192,20 @@
       from { transform: translateY(100vh); }
       to { transform: translateY(-120vh); }
     }
-
-    /* Responsive */
-    @media (min-width: 481px) {
-      body { text-align: center; }
-    }
   </style>
 </head>
 <body>
+  <!-- 🔹 Navbar -->
+  <nav>
+    <a href="#hero">Hero</a>
+    <a href="#about">Tentang</a>
+    <a href="#fitur">Fitur</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="#download">Download</a>
+  </nav>
+
   <!-- Hero -->
-  <section class="hero">
+  <section id="hero" class="hero">
     <h1>Plenix Clash Server</h1>
     <p>Server COC private terbaik untuk pengalaman bermain yang lebih seru dan menantang.</p>
     <div class="button-group">
@@ -186,7 +215,7 @@
   </section>
 
   <!-- Tentang -->
-  <section class="about">
+  <section id="about" class="about">
     <h2>Tentang Server</h2>
     <p>
       Plenix Clash Server hadir untuk memberikan pengalaman baru bagi para pemain Clash of Clans.
@@ -195,7 +224,7 @@
   </section>
 
   <!-- Fitur -->
-  <section>
+  <section id="fitur">
     <h2>Fitur Utama</h2>
     <div class="features">
       <div class="feature-card">💎 Unlimited Gems</div>
@@ -206,12 +235,21 @@
   </section>
 
   <!-- Testimoni -->
-  <section>
+  <section id="testimoni">
     <h2>Testimoni Pemain</h2>
     <div class="testimonials">
       <div class="testimonial">“Server ini bikin main COC jadi jauh lebih seru. Gak bosan lagi!”</div>
       <div class="testimonial">“Fitur unlimited gems bener-bener ngebantu banget. GG!”</div>
       <div class="testimonial">“Suka banget sama event custom-nya. Kreatif dan unik.”</div>
+    </div>
+  </section>
+
+  <!-- Download -->
+  <section id="download">
+    <h2>Download Sekarang</h2>
+    <div class="button-group">
+      <a href="#" class="btn">Download APK</a>
+      <a href="#" class="btn">Subscribe Channel</a>
     </div>
   </section>
 
@@ -235,12 +273,12 @@
       bubble.style.height = `${size}px`;
       bubble.style.left = `${Math.random() * 100}vw`;
       bubble.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-      bubble.style.animationDuration = `${Math.random() * 10 + 6}s`;
+      bubble.style.animationDuration = `${Math.random() * 18 + 12}s`; // 🔹 lebih lambat
       document.body.appendChild(bubble);
 
-      setTimeout(() => { bubble.remove(); }, 20000);
+      setTimeout(() => { bubble.remove(); }, 25000);
     }
-    setInterval(createBubble, 400);
+    setInterval(createBubble, 800); // 🔹 lebih jarang keluar
   </script>
 </body>
 </html>
