@@ -44,6 +44,8 @@
     /* Hero */
     header {
       padding: 100px 20px 60px;
+      position: relative;
+      z-index: 2;
     }
     header h1 {
       font-family: 'Orbitron', sans-serif;
@@ -99,7 +101,7 @@
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
       margin-bottom: 20px;
-      font-size: 1.5rem; /* Mengurangi ukuran font dari 1.8rem */
+      font-size: 1.5rem;
     }
 
     /* Fitur */
@@ -200,14 +202,14 @@
       height: 18px;
     }
 
-    /* Bubble background */
+    /* Bubble background - DIUBAH z-index menjadi -1 */
     .bubble {
       position: fixed;
       bottom: -100px;
       border-radius: 50%;
       opacity: 0.4;
       animation: floatUp linear infinite;
-      z-index: 0;
+      z-index: -1; /* Diubah dari 0 menjadi -1 agar di belakang konten */
       filter: blur(2px);
     }
     @keyframes floatUp {
@@ -231,11 +233,13 @@
     <p>Server COC private terbaik untuk pengalaman bermain yang luar biasa.</p>
 
     <div class="button-group">
-      <a href="#" class="btn small">
+      <!-- GANTI LINK_DOWNLOAD_APK_DISINI dengan link download APK Anda -->
+      <a href="LINK_DOWNLOAD_APK_DISINI" class="btn small">
         <img src="https://img.icons8.com/ios-filled/24/ffffff/android-os.png" alt="APK" class="icon"/>
         Download APK
       </a>
-      <a href="#" class="btn small" style="background:#ff0000;">
+      <!-- GANTI LINK_YOUTUBE_CHANNEL_DISINI dengan link YouTube Anda -->
+      <a href="LINK_YOUTUBE_CHANNEL_DISINI" class="btn small" style="background:#ff0000;">
         <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="Subscribe" class="icon"/>
         Subscribe Channel
       </a>
@@ -296,11 +300,13 @@
   <section id="download">
     <h2>Download Sekarang</h2>
     <div class="button-group">
-      <a href="#" class="btn small">
+      <!-- GANTI LINK_DOWNLOAD_APK_DISINI dengan link download APK Anda -->
+      <a href="LINK_DOWNLOAD_APK_DISINI" class="btn small">
         <img src="https://img.icons8.com/ios-filled/24/ffffff/android-os.png" alt="APK" class="icon"/>
         Download APK
       </a>
-      <a href="#" class="btn small" style="background:#ff0000;">
+      <!-- GANTI LINK_YOUTUBE_CHANNEL_DISINI dengan link YouTube Anda -->
+      <a href="LINK_YOUTUBE_CHANNEL_DISINI" class="btn small" style="background:#ff0000;">
         <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="Subscribe" class="icon"/>
         Subscribe Channel
       </a>
@@ -311,9 +317,12 @@
   <footer>
     <p>© 2025 Plenix Clash Server. Semua Hak Dilindungi.</p>
     <div class="social">
-      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png" alt="FB"></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/telegram-app.png" alt="TG"></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/new-post.png" alt="Email"></a>
+      <!-- GANTI LINK_FACEBOOK_DISINI dengan link Facebook Anda -->
+      <a href="LINK_FACEBOOK_DISINI"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png" alt="FB"></a>
+      <!-- GANTI LINK_TELEGRAM_DISINI dengan link Telegram Anda -->
+      <a href="LINK_TELEGRAM_DISINI"><img src="https://img.icons8.com/ios-filled/24/ffffff/telegram-app.png" alt="TG"></a>
+      <!-- GANTI LINK_EMAIL_DISINI dengan link email Anda -->
+      <a href="mailto:LINK_EMAIL_DISINI"><img src="https://img.icons8.com/ios-filled/24/ffffff/new-post.png" alt="Email"></a>
     </div>
   </footer>
 
