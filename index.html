@@ -96,10 +96,32 @@
       z-index: 2;
     }
     h2 {
-      font-family: 'Poppins', sans-serif; /* Mengubah font dari Orbitron ke Poppins */
-      font-weight: 700; /* Menambahkan ketebalan font */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
       margin-bottom: 20px;
-      font-size: 1.8rem;
+      font-size: 1.5rem; /* Mengurangi ukuran font dari 1.8rem */
+    }
+
+    /* Fitur */
+    .features-list {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .features-list li {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 15px;
+      border-radius: 10px;
+      transition: transform 0.3s, background 0.3s;
+      text-align: center;
+    }
+    .features-list li:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.15);
     }
 
     /* Testimoni */
@@ -229,12 +251,12 @@
   <!-- Fitur -->
   <section id="fitur">
     <h2>Fitur Unggulan</h2>
-    <ul style="list-style:none; padding:0; max-width:600px; margin:auto;">
-      <li> Unlimited Gems & Gold</li>
-      <li> Server Cepat & Stabil</li>
-      <li> Update Town Hall terbaru</li>
-      <li> Event Eksklusif Mingguan</li>
-      <li> Komunitas Aktif & Ramah</li>
+    <ul class="features-list">
+      <li>Unlimited Gems & Gold</li>
+      <li>Server Cepat & Stabil</li>
+      <li>Update Town Hall Terbaru</li>
+      <li>Event Eksklusif Mingguan</li>
+      <li>Komunitas Aktif & Ramah</li>
     </ul>
   </section>
 
