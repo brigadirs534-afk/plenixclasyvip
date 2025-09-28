@@ -1,188 +1,223 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plenix Clash Server</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    html {
+      scroll-behavior: smooth;
     }
-
     body {
-      font-family: Arial, sans-serif;
-      background: #000;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: black;
       color: white;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Background Bubble */
-    .bubbles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: -1;
-    }
-
-    .bubbles span {
-      position: absolute;
-      bottom: -150px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 50%;
-      animation: moveUp 28s linear infinite;
-      filter: blur(6px);
-    }
-
-    @keyframes moveUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-120vh) scale(0.5); opacity: 0; }
-    }
-
-    .navbar {
+    /* Navbar */
+    nav {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 15px;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 0;
+      z-index: 1000;
       display: flex;
       justify-content: center;
       gap: 20px;
-      z-index: 1000;
     }
-
-    .navbar a {
-      text-decoration: none;
+    nav a {
       color: white;
-      font-weight: bold;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover, nav a.active {
+      color: #00ff88;
     }
 
-    section {
-      min-height: 100vh;
-      padding: 100px 20px 50px;
-      text-align: center;
+    /* Hero */
+    header {
+      padding: 100px 20px 60px;
     }
-
-    h1 {
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
       font-size: 2.5rem;
-      color: #ff4fd8;
-      margin-bottom: 15px;
+      margin: 0;
+      background: linear-gradient(45deg, #ff4d6d, #ff80ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-
-    h2 {
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    p {
+    header p {
+      margin-top: 15px;
       font-size: 1.1rem;
-      margin-bottom: 20px;
-      color: #ddd;
     }
 
-    ul {
-      list-style: disc;
-      text-align: left;
-      max-width: 500px;
-      margin: 0 auto 20px;
-      padding-left: 20px;
-      color: #ddd;
-      line-height: 1.6;
+    /* Tombol download + subscribe */
+    .button-group {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
     }
-
-    .btn-container {
-      margin: 20px 0;
-    }
-
-    .btn {
-      display: inline-flex;
+    .btn.small {
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 25px;
-      margin: 10px;
-      background: #22c55e;
+      gap: 8px;
+      width: 200px;
+      padding: 10px 0;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      background: #00c853;
       color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 1rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: 0.3s;
+      transition: background 0.3s;
+    }
+    .btn.small:hover {
+      background: gray;
+    }
+    .btn.small img.icon {
+      width: 18px;
+      height: 18px;
     }
 
-    .btn:hover {
-      background: #16a34a;
+    /* Section */
+    section {
+      padding: 80px 20px;
+      position: relative;
+      z-index: 2;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
 
     /* Testimoni */
     .testimoni-container {
       display: grid;
       gap: 20px;
-      max-width: 800px;
+      max-width: 1000px;
       margin: auto;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
-
     .testimoni {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       padding: 20px;
       border-radius: 12px;
-      font-style: italic;
-    }
-
-    footer {
+      transition: transform 0.3s, background 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      padding: 20px;
-      background: #111;
-      font-size: 0.9rem;
-      margin-top: 40px;
+    }
+    .testimoni:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.15);
+    }
+    .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 12px;
+      border: 2px solid #00ff88;
+      object-fit: cover;
+    }
+    .testimoni p {
+      font-style: italic;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .testimoni span {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #aaa;
     }
 
-    footer .sosmed {
-      margin-top: 10px;
+    /* Footer */
+    footer {
+      padding: 20px;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 2;
+    }
+    .social {
+      margin-top: 15px;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
+    }
+    .social a {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .social a:hover {
+      transform: scale(1.2);
+      background: #00ff88;
+    }
+    .social img {
+      width: 18px;
+      height: 18px;
     }
 
-    footer .sosmed a {
-      color: white;
-      font-size: 1.5rem;
+    /* Bubble background */
+    .bubble {
+      position: fixed;
+      bottom: -100px;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: floatUp linear infinite;
+      z-index: 0;
+      filter: blur(2px);
+    }
+    @keyframes floatUp {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-120vh); }
     }
   </style>
 </head>
 <body>
-  <!-- Background Bubble -->
-  <div class="bubbles">
-    <span style="width:40px; height:40px; left:10%; animation-duration: 20s;"></span>
-    <span style="width:60px; height:60px; left:30%; animation-duration: 25s;"></span>
-    <span style="width:25px; height:25px; left:50%; animation-duration: 23s;"></span>
-    <span style="width:80px; height:80px; left:70%; animation-duration: 28s;"></span>
-    <span style="width:50px; height:50px; left:90%; animation-duration: 26s;"></span>
-  </div>
-
   <!-- Navbar -->
-  <div class="navbar">
+  <nav>
     <a href="#tentang">Tentang</a>
     <a href="#fitur">Fitur</a>
     <a href="#testimoni">Testimoni</a>
     <a href="#download">Download</a>
-  </div>
+  </nav>
 
   <!-- Hero -->
-  <section id="hero">
+  <header>
     <h1>Plenix Clash Server</h1>
     <p>Server COC private terbaik untuk pengalaman bermain yang luar biasa.</p>
-    <div class="btn-container">
-      <a href="#" class="btn">⬇️ Download APK</a>
-      <a href="#" class="btn">📺 Subscribe Channel</a>
+
+    <div class="button-group">
+      <a href="#" class="btn small">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/android-os.png" alt="APK" class="icon"/>
+        Download APK
+      </a>
+      <a href="#" class="btn small" style="background:#ff0000;">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="Subscribe" class="icon"/>
+        Subscribe Channel
+      </a>
     </div>
-  </section>
+  </header>
 
   <!-- Tentang -->
   <section id="tentang">
@@ -193,12 +228,12 @@
   <!-- Fitur -->
   <section id="fitur">
     <h2>Fitur Unggulan</h2>
-    <ul>
-      <li>Unlimited Gems & Gold</li>
-      <li>Server Cepat & Stabil</li>
-      <li>Update Town Hall Terbaru</li>
-      <li>Event Eksklusif Mingguan</li>
-      <li>Komunitas Aktif & Ramah</li>
+    <ul style="list-style:none; padding:0; max-width:600px; margin:auto;">
+      <li>💎 Unlimited Gems & Gold</li>
+      <li>⚡ Server Cepat & Stabil</li>
+      <li>🏰 Update Town Hall terbaru</li>
+      <li>🎉 Event Eksklusif Mingguan</li>
+      <li>👥 Komunitas Aktif & Ramah</li>
     </ul>
   </section>
 
@@ -206,31 +241,76 @@
   <section id="testimoni">
     <h2>Testimoni</h2>
     <div class="testimoni-container">
-      <div class="testimoni">"Servernya stabil banget, lancar mainnya!"</div>
-      <div class="testimoni">"Banyak fitur unik yang beda dari server lain."</div>
-      <div class="testimoni">"Top banget, ga ada lag sama sekali."</div>
-      <div class="testimoni">"Suka banget sama event custom-nya, kreatif dan seru."</div>
-      <div class="testimoni">"Rekomendasi banget buat pecinta COC!"</div>
+      <div class="testimoni">
+        <img src="https://i.pravatar.cc/60?img=1" alt="User" class="avatar">
+        <p>“Suka banget sama event custom-nya. Kreatif dan unik.”</p>
+        <span>- Andi</span>
+      </div>
+      <div class="testimoni">
+        <img src="https://i.pravatar.cc/60?img=2" alt="User" class="avatar">
+        <p>“Servernya stabil banget, nggak ada lag sama sekali.”</p>
+        <span>- Budi</span>
+      </div>
+      <div class="testimoni">
+        <img src="https://i.pravatar.cc/60?img=3" alt="User" class="avatar">
+        <p>“Update rutin bikin makin betah main di sini.”</p>
+        <span>- Clara</span>
+      </div>
+      <div class="testimoni">
+        <img src="https://i.pravatar.cc/60?img=4" alt="User" class="avatar">
+        <p>“Unlimited gems bikin progress lebih cepat.”</p>
+        <span>- Deni</span>
+      </div>
+      <div class="testimoni">
+        <img src="https://i.pravatar.cc/60?img=5" alt="User" class="avatar">
+        <p>“Community ramah dan support sangat membantu.”</p>
+        <span>- Eka</span>
+      </div>
     </div>
   </section>
 
   <!-- Download -->
   <section id="download">
     <h2>Download Sekarang</h2>
-    <div class="btn-container">
-      <a href="#" class="btn">⬇️ Download APK</a>
-      <a href="#" class="btn">📺 Subscribe Channel</a>
+    <div class="button-group">
+      <a href="#" class="btn small">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/android-os.png" alt="APK" class="icon"/>
+        Download APK
+      </a>
+      <a href="#" class="btn small" style="background:#ff0000;">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="Subscribe" class="icon"/>
+        Subscribe Channel
+      </a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>© 2025 Plenix Clash Server. Semua Hak Dilindungi.</p>
-    <div class="sosmed">
-      <a href="#">📘</a>
-      <a href="#">✈️</a>
-      <a href="#">✉️</a>
+    <div class="social">
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png" alt="FB"></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/telegram-app.png" alt="TG"></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/new-post.png" alt="Email"></a>
     </div>
   </footer>
+
+  <!-- Bubble generator -->
+  <script>
+    function createBubble() {
+      const bubble = document.createElement("div");
+      bubble.classList.add("bubble");
+      document.body.appendChild(bubble);
+
+      const size = Math.random() * 40 + 20;
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}vw`;
+      bubble.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      bubble.style.animationDuration = `${8 + Math.random() * 8}s`;
+
+      setTimeout(() => { bubble.remove(); }, 16000);
+    }
+    setInterval(createBubble, 600);
+  </script>
 </body>
 </html>
