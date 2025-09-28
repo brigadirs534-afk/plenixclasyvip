@@ -2,13 +2,17 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Plenix Clash Server</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -20,162 +24,133 @@
       overflow-x: hidden;
     }
 
-    h1, h2, h3 {
-      font-family: 'Orbitron', sans-serif;
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(6px);
+      padding: 12px 0;
+      z-index: 10;
     }
 
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #0f0;
+    }
+
+    /* Hero */
+    header {
+      padding: 120px 20px 80px;
+      z-index: 2;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg,#ff4d4d,#ff66cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+
+    /* Section */
     section {
       padding: 80px 20px;
       position: relative;
       z-index: 2;
     }
 
-    /* 🔹 Navbar */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(10px); /* efek blur */
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 15px 0;
-      z-index: 10;
+    section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.6rem;
+      margin-bottom: 25px;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: #ff6b6b;
-    }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: 2.4rem;
-      background: linear-gradient(90deg, #ff4ecd, #ff6b6b, #ffa94d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      color: #ddd;
-      max-width: 90%;
-      margin: 0 auto 30px;
-    }
-
+    /* Buttons */
     .button-group {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 15px;
     }
 
     .btn {
-      display: block;
-      width: 250px;
-      max-width: 90%;
-      margin: 0 auto;
-      text-align: center;
-      background: #28a745;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 200px;
+      padding: 10px 0;
+      background: #00c851;
+      border: none;
+      border-radius: 40px;
       color: white;
-      padding: 15px 0;
-      border-radius: 50px;
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
       text-decoration: none;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: 0.3s;
     }
 
-    .btn:hover { background: #6c757d; }
-    .btn:active { background: #5a6268; }
-
-    /* Tentang */
-    .about p {
-      max-width: 700px;
-      margin: auto;
-      color: #ccc;
-      line-height: 1.6;
+    .btn img.icon {
+      width: 18px;
+      height: 18px;
     }
 
-    /* Fitur */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: auto;
+    .btn:hover {
+      background: #555;
     }
-
-    .feature-card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-    }
-
-    .feature-card:hover { transform: translateY(-5px); }
 
     /* Testimoni */
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .testimonial {
-      background: rgba(255,255,255,0.08);
+    .testimoni {
+      background: rgba(255,255,255,0.1);
       padding: 20px;
-      border-radius: 15px;
-      font-size: 0.9rem;
-      color: #eee;
+      border-radius: 10px;
+      margin: 0 auto;
+      max-width: 400px;
+      font-style: italic;
     }
 
     /* Footer */
     footer {
-      padding: 30px 20px;
-      background: rgba(255,255,255,0.05);
-      margin-top: 40px;
+      background: rgba(0,0,0,0.8);
+      padding: 20px;
+      position: relative;
+      z-index: 2;
     }
 
-    .social {
-      margin-top: 15px;
+    .socials {
+      margin-top: 10px;
     }
 
-    .social a {
-      display: inline-block;
+    .socials a {
       margin: 0 8px;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      color: white;
+      font-size: 22px;
+      display: inline-block;
+      transition: 0.3s;
     }
 
-    .social a:hover {
+    .socials a:hover {
       transform: scale(1.2);
-      filter: drop-shadow(0 0 8px white);
-    }
-
-    .social img {
-      width: 28px;
-      height: 28px;
+      color: #0f0;
     }
 
     /* Bubble background */
@@ -183,7 +158,8 @@
       position: fixed;
       bottom: -100px;
       border-radius: 50%;
-      opacity: 0.4;
+      opacity: 0.5;
+      filter: blur(3px);
       animation: floatUp linear infinite;
       z-index: 0;
     }
@@ -195,90 +171,105 @@
   </style>
 </head>
 <body>
-  <!-- 🔹 Navbar -->
+  <!-- Navbar -->
   <nav>
-    <a href="#hero">Hero</a>
-    <a href="#about">Tentang</a>
+    <a href="#tentang">Tentang</a>
     <a href="#fitur">Fitur</a>
     <a href="#testimoni">Testimoni</a>
     <a href="#download">Download</a>
   </nav>
 
   <!-- Hero -->
-  <section id="hero" class="hero">
+  <header id="hero">
     <h1>Plenix Clash Server</h1>
-    <p>Server COC private terbaik untuk pengalaman bermain yang lebih seru dan menantang.</p>
-    <div class="button-group">
-      <a href="#" class="btn">Download Sekarang</a>
-      <a href="#" class="btn">Subscribe</a>
-    </div>
-  </section>
+    <p>Server COC private terbaik untuk pengalaman bermain yang luar biasa.</p>
+  </header>
 
   <!-- Tentang -->
-  <section id="about" class="about">
-    <h2>Tentang Server</h2>
-    <p>
-      Plenix Clash Server hadir untuk memberikan pengalaman baru bagi para pemain Clash of Clans.
-      Dengan berbagai fitur modifikasi, Anda dapat menikmati permainan dengan cara yang lebih bebas dan menyenangkan.
-    </p>
+  <section id="tentang">
+    <h2>Tentang Kami</h2>
+    <p>Kami menghadirkan server COC private dengan fitur eksklusif, stabil, dan cepat.</p>
   </section>
 
   <!-- Fitur -->
   <section id="fitur">
     <h2>Fitur Utama</h2>
-    <div class="features">
-      <div class="feature-card">💎 Unlimited Gems</div>
-      <div class="feature-card">⚔️ Troops Custom</div>
-      <div class="feature-card">🏰 Base Builder Cepat</div>
-      <div class="feature-card">🔥 Event Eksklusif</div>
-    </div>
+    <p>- Unlimited Gems & Resources<br>- Update Rutin<br>- Event Custom Menarik</p>
   </section>
 
   <!-- Testimoni -->
   <section id="testimoni">
-    <h2>Testimoni Pemain</h2>
-    <div class="testimonials">
-      <div class="testimonial">“Server ini bikin main COC jadi jauh lebih seru. Gak bosan lagi!”</div>
-      <div class="testimonial">“Fitur unlimited gems bener-bener ngebantu banget. GG!”</div>
-      <div class="testimonial">“Suka banget sama event custom-nya. Kreatif dan unik.”</div>
-    </div>
+    <h2>Testimoni</h2>
+    <div class="testimoni">“Suka banget sama event custom-nya. Kreatif dan unik.”</div>
   </section>
 
   <!-- Download -->
   <section id="download">
     <h2>Download Sekarang</h2>
     <div class="button-group">
-      <a href="#" class="btn">Download APK</a>
-      <a href="#" class="btn">Subscribe Channel</a>
+      <a href="#" class="btn">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/android-os.png" alt="APK" class="icon"/>
+        Download APK
+      </a>
+      <a href="#" class="btn" style="background:#ff0000;">
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/youtube-play.png" alt="Subscribe" class="icon"/>
+        Subscribe Channel
+      </a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Plenix Clash Server. Semua Hak Dilindungi.</p>
-    <div class="social">
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/telegram-app.png" alt="Telegram"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email"/></a>
+    <p>© 2025 Plenix Clash Server. Semua Hak Dilindungi.</p>
+    <div class="socials">
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/facebook.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/telegram-app.png"/></a>
+      <a href="#"><img src="https://img.icons8.com/ios-filled/24/ffffff/new-post.png"/></a>
     </div>
   </footer>
 
-  <!-- Bubble Background -->
+  <!-- Bubble generator -->
   <script>
     function createBubble() {
       const bubble = document.createElement("div");
-      const size = Math.random() * 60 + 20;
       bubble.classList.add("bubble");
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${Math.random() * 100}vw`;
-      bubble.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-      bubble.style.animationDuration = `${Math.random() * 18 + 12}s`; // 🔹 lebih lambat
       document.body.appendChild(bubble);
 
-      setTimeout(() => { bubble.remove(); }, 25000);
+      let size = Math.random() * 40 + 20;
+      bubble.style.width = size + "px";
+      bubble.style.height = size + "px";
+      bubble.style.left = Math.random() * window.innerWidth + "px";
+      bubble.style.background = `hsl(${Math.random()*360}, 70%, 60%)`;
+      bubble.style.animationDuration = (Math.random() * 15 + 12) + "s";
+
+      setTimeout(() => {
+        bubble.remove();
+      }, 20000);
     }
-    setInterval(createBubble, 800); // 🔹 lebih jarang keluar
+    setInterval(createBubble, 600);
+
+    // Highlight aktif di navbar
+    const sections = document.querySelectorAll("section, header");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 120;
+        const height = sec.offsetHeight;
+        if (top >= offset && top < offset + height) {
+          current = sec.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
   </script>
 </body>
 </html>
